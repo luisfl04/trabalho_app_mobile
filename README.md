@@ -47,3 +47,6 @@ A aplicação permitirá que o usuário cadastre, edite e acompanhe seus treinos
 # 4 Arquitetura do Sistema
 
 # 5 Design de Interface (UI/UX)
+
+Link para o figma
+https://www.figma.com/proto/4o9kSenBvSDExOQGwopYwJ/Projeto-Prog.Mobile-TreinoNutri-?page-id=0%3A1&node-id=3-60&t=GTcD0eMI5wy6WwPf-0&scaling=scale-down&content-scaling=fixed
