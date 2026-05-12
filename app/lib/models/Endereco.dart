@@ -1,6 +1,6 @@
 class Endereco {
   final int id;
-  final int usuarioId; // Chave Estrangeira (FK)
+  final int usuarioId;
   final String cep;
   final String rua;
   final String cidade;
@@ -17,7 +17,6 @@ class Endereco {
     required this.complemento,
   });
 
-  // Converte de um Map (ex: vindo do banco de dados ou JSON da API de CEP)
   factory Endereco.fromMap(Map<String, dynamic> map) {
     return Endereco(
       id: map['id'],
@@ -30,7 +29,6 @@ class Endereco {
     );
   }
 
-  // Converte para um Map (ex: para persistência no banco de dados)
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -43,7 +41,6 @@ class Endereco {
     };
   }
 
-  // Método para retorno público via API (JSON)
   Map<String, dynamic> toJsonPublico() {
     return {
       'id': id,
