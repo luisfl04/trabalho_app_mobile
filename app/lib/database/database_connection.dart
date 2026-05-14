@@ -9,14 +9,14 @@ class DatabaseConnection {
   final int databaseVersion = 1;
 
   factory DatabaseConnection() => _instance;
+
   DatabaseConnection._internal();
 
   Future<Database> get db async {
-    if(_db != null) {
+    if (_db != null) {
       return _db!;
     }
 
-    print("Iniciando criação do banco");
     _db = await _initDB();
     return _db!;
   }
@@ -26,10 +26,9 @@ class DatabaseConnection {
     final basePath = await getDatabasesPath();
     final filePath = join(basePath, nameDB);
 
-    await deleteDatabase(filePath);
     return await openDatabase (
         filePath,
-        version: 1,
+        version: databaseVersion,
         onConfigure: (db) async {
           await db.execute("PRAGMA foreign_keys = ON");
         },
