@@ -48,6 +48,7 @@ class DatabaseConnection {
       """
       CREATE TABLE IF NOT EXISTS Usuario (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
+          uuid TEXT UNIQUE,
           name TEXT NOT NULL,
           email TEXT NOT NULL UNIQUE,
           username TEXT NOT NULL UNIQUE,

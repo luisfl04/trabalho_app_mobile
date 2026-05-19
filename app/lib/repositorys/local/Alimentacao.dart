@@ -1,24 +1,24 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:app/database/database_connection.dart';
-import 'package:app/models/Usuario.dart';
-import 'BaseRepository.dart';
+import 'package:app/models/Alimentacao.dart';
+import 'package:app/repositorys/local/BaseRepository.dart';
 
-class UsuarioRepository implements BaseRepository<Usuario> {
-  final String _tableName = 'Usuario';
+class AlimentacaoRepository implements BaseRepository<Alimentacao> {
+  final String _tableName = 'Alimentacao';
   Future<Database> get _db async => await DatabaseConnection().db;
 
   @override
-  Future<int> inserir(Usuario usuario) async {
+  Future<int> inserir(Alimentacao alimentacao) async {
     final dbClient = await _db;
-    return await dbClient.insert(_tableName, usuario.toMap());
+    return await dbClient.insert(_tableName, alimentacao.toMap());
   }
 
   @override
-  Future<int> atualizarPorId(int id, Usuario usuario) async {
+  Future<int> atualizarPorId(int id, Alimentacao alimentacao) async {
     final dbClient = await _db;
     return await dbClient.update(
       _tableName,
-      usuario.toMap(),
+      alimentacao.toMap(),
       where: 'id = ?',
       whereArgs: [id],
     );
@@ -35,7 +35,7 @@ class UsuarioRepository implements BaseRepository<Usuario> {
   }
 
   @override
-  Future<Usuario?> buscarPorId(int id) async {
+  Future<Alimentacao?> buscarPorId(int id) async {
     final dbClient = await _db;
     final List<Map<String, dynamic>> maps = await dbClient.query(
       _tableName,
@@ -44,22 +44,22 @@ class UsuarioRepository implements BaseRepository<Usuario> {
     );
 
     if (maps.isNotEmpty) {
-      return Usuario.fromMap(maps.first);
+      return Alimentacao.fromMap(maps.first);
     }
     return null;
   }
 
   @override
-  Future<List<Usuario>> buscarTodos() async {
+  Future<List<Alimentacao>> buscarTodos() async {
     final dbClient = await _db;
     final List<Map<String, dynamic>> maps = await dbClient.query(_tableName);
-    return maps.map((item) => Usuario.fromMap(item)).toList();
+    return maps.map((item) => Alimentacao.fromMap(item)).toList();
   }
 
   @override
-  Future<List<Usuario>> buscarPorSqlPersonalizado(String sql, List<dynamic> argumentos) async {
+  Future<List<Alimentacao>> buscarPorSqlPersonalizado(String sql, List<dynamic> argumentos) async {
     final dbClient = await _db;
     final List<Map<String, dynamic>> maps = await dbClient.rawQuery(sql, argumentos);
-    return maps.map((item) => Usuario.fromMap(item)).toList();
+    return maps.map((item) => Alimentacao.fromMap(item)).toList();
   }
 }
